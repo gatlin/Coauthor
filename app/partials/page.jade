@@ -1,7 +1,10 @@
 div(ng-app='ng-app')
   div(ng-controller='PageCtrl')
     div(class="row-fluid",id="main")
-
-      div(class='span6',id='thearea')
-        div(id='editable',class='editable',editable,
-        ng-bind-html="sourceHtml")
+    .row-fluid
+      div(class='span6 offset2 clearfix',id='thearea')
+        .row-fluid
+          div(class='editable',editable,
+          ng-bind-html="sourceHtml")
+      .span3
+        div(id="sidebar",ui-jq="affix")

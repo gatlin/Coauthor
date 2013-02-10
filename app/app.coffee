@@ -18,10 +18,10 @@ App.config([
 
   $routeProvider
 
-    .when('/new', {templateUrl: '/partials/page.html'})
+    .when('/p/:id', {templateUrl: '/partials/page.html'})
 
     # Catch all
-    .otherwise({redirectTo: '/new'})
+    .otherwise({redirectTo: '/p/new'})
 
   # Without server side support html5 must be disabled.
   $locationProvider.html5Mode(false)

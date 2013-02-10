@@ -39,13 +39,17 @@ angular.module('app.controllers', ['ui','ngSanitize'])
     element.hallo(
       plugins:
         "halloformat": {}
-        "halloheadings": {}
+#        "halloheadings": {}
         "halloreundo": {}
         "hallolists": {}
         "hallolink": {}
         "halloindicator": {}
+        "halloblock": {}
+        "hallotoolbarlinebreak": {}
+        "hallohtml": {}
       editable: true
       toolbar: 'halloToolbarFixed'
+      parentElement: '#sidebar'
     )
 
     element.bind "hallomodified", (event, data) ->
@@ -57,10 +61,11 @@ angular.module('app.controllers', ['ui','ngSanitize'])
 
 ($scope, $routeParams) ->
 
-  $scope.sourceHtml = '''
-    <h2>Page Heading</h2>
+  $scope.pageId = $routeParams.id
+  console.log $scope.pageId
 
-    <p class="ui-droppable">Click here to begin editing!</p>
+  $scope.sourceHtml = '''
+    <p>Click here to begin editing.</p>
     </ul>
   '''
 
