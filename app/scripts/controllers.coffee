@@ -2,7 +2,7 @@
 
 ### Controllers ###
 
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['ui','ngSanitize'])
 
 .controller('AppCtrl', [
   '$scope'
@@ -34,52 +34,35 @@ angular.module('app.controllers', [])
       return ''
 ])
 
-.controller('MyCtrl1', [
+.directive('editable', () ->
+  return (scope, element, attrs) ->
+    element.hallo(
+      plugins:
+        "halloformat": {}
+        "halloheadings": {}
+        "halloreundo": {}
+        "hallolists": {}
+        "hallolink": {}
+        "halloindicator": {}
+      editable: true
+      toolbar: 'halloToolbarFixed'
+    )
+
+    element.bind "hallomodified", (event, data) ->
+)
+
+.controller('PageCtrl', [
   '$scope'
+  '$routeParams'
 
-($scope) ->
-  $scope.onePlusOne = 2
-])
+($scope, $routeParams) ->
 
-.controller('MyCtrl2', [
-  '$scope'
+  $scope.sourceHtml = '''
+    <h2>Page Heading</h2>
 
-($scope) ->
-  $scope
-])
-
-.controller('TodoCtrl', [
-  '$scope'
-
-($scope) ->
-
-  $scope.todos = [
-    text: "learn angular"
-    done: true
-  ,
-    text: "build an angular app"
-    done: false
-  ]
-
-  $scope.addTodo = ->
-    $scope.todos.push
-      text: $scope.todoText
-      done: false
-
-    $scope.todoText = ""
-
-  $scope.remaining = ->
-    count = 0
-    angular.forEach $scope.todos, (todo) ->
-      count += (if todo.done then 0 else 1)
-
-    count
-
-  $scope.archive = ->
-    oldTodos = $scope.todos
-    $scope.todos = []
-    angular.forEach oldTodos, (todo) ->
-      $scope.todos.push todo  unless todo.done
+    <p class="ui-droppable">Click here to begin editing!</p>
+    </ul>
+  '''
 
 ])
 

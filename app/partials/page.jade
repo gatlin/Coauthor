@@ -1,0 +1,7 @@
+div(ng-app='ng-app')
+  div(ng-controller='PageCtrl')
+    div(class="row-fluid",id="main")
+
+      div(class='span6',id='thearea')
+        div(id='editable',class='editable',editable,
+        ng-bind-html="sourceHtml")
