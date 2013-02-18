@@ -21,7 +21,7 @@ App.config([
     .when('/p/:id', {templateUrl: '/partials/page.html'})
 
     # Catch all
-    .otherwise({redirectTo: '/p/new'})
+    .otherwise({redirectTo: '/p/home'})
 
   # Without server side support html5 must be disabled.
   $locationProvider.html5Mode(false)

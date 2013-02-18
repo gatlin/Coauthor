@@ -34,6 +34,15 @@ angular.module('app.controllers', ['ui','ngSanitize'])
       return ''
 ])
 
+.value('ui.config',
+  jq:
+    wysihtml5:
+      useLineBreaks: false
+      autoLink: true
+      html: true
+      parserRules: wysihtml5ParserRules
+)
+
 .directive('editable', () ->
   (scope, element, attrs) ->
     id = attrs.id
