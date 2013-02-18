@@ -2,9 +2,7 @@ div(ng-app='ng-app')
   div(ng-controller='PageCtrl')
     div(class="row-fluid",id="main")
     .row-fluid
-      div(class='span6 offset3 clearfix',id='thearea')
-        .row-fluid
-          div(class='editable',editable,
-          ng-bind-html="sourceHtml")
-      .span3
-        div(id="sidebar",ui-jq="affix")
+      div(class='span9 offset2 clearfix',id='thearea')
+        textarea(class="editable",ng-model="content",
+        ui-jq="wysihtml5",editable,id="editor",
+        ui-options="{useLineBreaks:false,autoLink:true,html:true,parserRules:advancedParserRules}")

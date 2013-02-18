@@ -35,24 +35,19 @@ angular.module('app.controllers', ['ui','ngSanitize'])
 ])
 
 .directive('editable', () ->
-  return (scope, element, attrs) ->
-    element.hallo(
-      plugins:
-        "halloformat": {}
-#        "halloheadings": {}
-        "halloreundo": {}
-        "hallolists": {}
-        "hallolink": {}
-        "halloindicator": {}
-        "halloblock": {}
-        "hallotoolbarlinebreak": {}
-        "hallohtml": {}
-      editable: true
-      toolbar: 'halloToolbarFixed'
-      parentElement: '#sidebar'
-    )
-
-    element.bind "hallomodified", (event, data) ->
+  (scope, element, attrs) ->
+    id = attrs.id
+    ed = $('#'+id).data("wysihtml5").editor
+    ed.on 'load', () ->
+      scope.$watch 'content', () ->
+        ed.focus()
+        ed.composer.commands.exec 'insertHTML', scope.content
+    ed.on 'change', () ->
+      scope.pouchdb.get scope.pageId, (err, doc) ->
+        console.log doc
+        doc.content = $('#'+id).val()
+        scope.pouchdb.put doc, (err, res) ->
+          console.log res
 )
 
 .controller('PageCtrl', [
@@ -64,10 +59,15 @@ angular.module('app.controllers', ['ui','ngSanitize'])
   $scope.pageId = $routeParams.id
   console.log $scope.pageId
 
-  $scope.sourceHtml = '''
-    <p>Click here to begin editing.</p>
-    </ul>
-  '''
+  Pouch 'idb://pages', (err,db) ->
+    $scope.pouchdb = db
+    db.get $scope.pageId, (err, doc) ->
+      if err
+        db.put {_id:$scope.pageId, content:''}
+      else
+        console.log doc
+        $scope.$apply () ->
+          $scope.content = doc.content
 
 ])
 
