@@ -127,7 +127,7 @@ angular.module('app.controllers', ['ui','ngSanitize'])
 
 ($scope) ->
 
-  Pouch 'idb://pages', (err, db) ->
+  Pouch 'http://dev.niltag.net:9292/dev.niltag.net:5984/pages', (err, db) ->
     db.allDocs {include_docs: true}, (err, response) ->
       console.log response.rows
       $scope.$apply () ->
