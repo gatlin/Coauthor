@@ -1,0 +1,20 @@
+
+<div ng-app="ng-app">
+  <div ng-controller="PageCtrl">
+    <div id="main" class="row-fluid"></div>
+    <div class="row-fluid">
+      <div class="span2">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="nav-header">Site</li>
+          <li><a ng-href="#/p/home">Front Page</a></li>
+          <li><a href="#">All Pages</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Upload a file</a></li>
+          <li class="nav-header">Page</li>
+          <li><a ng-href="#/e/{{pageId}}">Edit the page</a></li>
+        </ul>
+      </div>
+      <div id="thearea" ng-bind-html-unsafe="content" class="span9 clearfix"></div>
+    </div>
+  </div>
+</div>
