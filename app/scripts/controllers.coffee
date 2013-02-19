@@ -63,10 +63,7 @@ angular.module('app.controllers', ['ui','ngSanitize'])
         ed.focus()
         ed.composer.commands.exec 'insertHTML', scope.content
     ed.on 'change', () ->
-      scope.pouchdb.get scope.pageId, (err, doc) ->
-        doc.content = $('#'+id).val()
-        scope.pouchdb.put doc, (err, res) ->
-          console.log res
+      scope.save id
 )
 
 .controller('EditCtrl', [
@@ -90,6 +87,13 @@ angular.module('app.controllers', ['ui','ngSanitize'])
           $scope.content = doc.content
           console.log $scope.content
           console.log doc.content
+
+  $scope.save = (id) ->
+    content = $('#'+id).val()
+    $scope.pouchdb.get $scope.pageId, (err,doc) ->
+      doc.content = content
+      $scope.pouchdb.put doc, (err, res) ->
+        console.log res
 
 ])
 
