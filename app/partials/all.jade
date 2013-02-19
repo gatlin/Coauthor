@@ -1,5 +1,5 @@
 div(ng-app='ng-app')
-  div(ng-controller='EditCtrl')
+  div(ng-controller='AllCtrl')
     div(class="row-fluid",id="main")
     .row-fluid
       .span2
@@ -8,15 +8,16 @@ div(ng-app='ng-app')
           li
             a(ng-href="#/p/home") Front Page
           li
-            a(href="#/all") All Pages
+            a(ng-href="#/all") All Pages
           li
             a(href="#") Categories
           li
             a(href="#") Upload a file
-          li(class="nav-header") Page
-          li
-            a(ng-href="#/p/{{pageId}}") View the page
       div(class='span9 clearfix',id='thearea')
-        textarea(class="editable",ng-model="content",
-        ui-jq="wysihtml5",editable,id="editor",
-        )
+        div(class="media",ng-repeat="d in docs")
+          .media-body
+            h3.media-heading {{d.id}}
+            .media
+              a(href="#/p/{{d.id}}") View &nbsp;
+              a(href="#/e/{{d.id}}") Edit
+

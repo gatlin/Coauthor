@@ -20,6 +20,7 @@ App.config([
 
     .when('/e/:id', {templateUrl: '/partials/edit.html'})
     .when('/p/:id', {templateUrl: '/partials/page.html'})
+    .when('/all',   {templateUrl: '/partials/all.html'})
 
     # Catch all
     .otherwise({redirectTo: '/p/home'})

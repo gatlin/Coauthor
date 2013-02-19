@@ -1,21 +1,24 @@
 
 <div ng-app="ng-app">
-  <div ng-controller="EditCtrl">
+  <div ng-controller="AllCtrl">
     <div id="main" class="row-fluid"></div>
     <div class="row-fluid">
       <div class="span2">
         <ul class="nav nav-pills nav-stacked">
           <li class="nav-header">Site</li>
           <li><a ng-href="#/p/home">Front Page</a></li>
-          <li><a href="#/all">All Pages</a></li>
+          <li><a ng-href="#/all">All Pages</a></li>
           <li><a href="#">Categories</a></li>
           <li><a href="#">Upload a file</a></li>
-          <li class="nav-header">Page</li>
-          <li><a ng-href="#/p/{{pageId}}">View the page</a></li>
         </ul>
       </div>
       <div id="thearea" class="span9 clearfix">
-        <textarea ng-model="content" ui-jq="wysihtml5" editable="editable" id="editor" class="editable"></textarea>
+        <div ng-repeat="d in docs" class="media">
+          <div class="media-body">
+            <h3 class="media-heading">{{d.id}}</h3>
+            <div class="media"><a href="#/p/{{d.id}}">View &nbsp;</a><a href="#/e/{{d.id}}">Edit</a></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

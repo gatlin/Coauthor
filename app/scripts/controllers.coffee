@@ -116,3 +116,15 @@ angular.module('app.controllers', ['ui','ngSanitize'])
           console.log doc.content
 
 ])
+
+.controller('AllCtrl', [
+  '$scope'
+
+($scope) ->
+
+  Pouch 'idb://pages', (err, db) ->
+    db.allDocs {include_docs: true}, (err, response) ->
+      console.log response.rows
+      $scope.$apply () ->
+          $scope.docs = response.rows
+])
