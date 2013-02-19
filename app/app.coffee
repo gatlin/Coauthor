@@ -18,6 +18,7 @@ App.config([
 
   $routeProvider
 
+    .when('/e/:id', {templateUrl: '/partials/edit.html'})
     .when('/p/:id', {templateUrl: '/partials/page.html'})
 
     # Catch all

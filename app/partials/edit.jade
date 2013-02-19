@@ -1,5 +1,5 @@
 div(ng-app='ng-app')
-  div(ng-controller='PageCtrl')
+  div(ng-controller='EditCtrl')
     div(class="row-fluid",id="main")
     .row-fluid
       .span2
@@ -15,5 +15,8 @@ div(ng-app='ng-app')
             a(href="#") Upload a file
           li(class="nav-header") Page
           li
-            a(ng-href="#/e/{{pageId}}") Edit the page
-      div(class='span9 clearfix',id='thearea',ng-bind-html-unsafe="content")
+            a(ng-href="#/p/{{pageId}}") View the page
+      div(class='span9 clearfix',id='thearea')
+        textarea(class="editable",ng-model="content",
+        ui-jq="wysihtml5",editable,id="editor",
+        )

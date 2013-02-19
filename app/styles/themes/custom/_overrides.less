@@ -13,43 +13,60 @@ bootstrap, so the may override it's behavior.
 // Application styles
 
 body {
+  outline: none;
 }
 
 .main-content {
   margin-top: 25px;
 }
 
-.editable p, .editable div{
-  font-size: 16pt;
-  line-height: 21pt;
-}
+*, .editable {
 
 h1 {
-  font-size: 34pt;
+  font-size: 28pt;
+  font-weight: normal;
 }
 
 h2 {
-  font-size: 26pt;
+  font-size: 21pt;
+  font-weight: normal;
 }
 
 h3 {
-  font-size: 21pt;
+  font-size: 18pt;
+  font-weight: normal;
 }
 
 h1, h2, h3, h4, h5 {
-  margin-bottom: 0.9em;
+  margin-bottom: 0.7em;
   margin-top: 0.2em;
+  border-bottom: 1px solid #cdcdcd;
 }
 
 p {
-  font-size: 16pt;
-  line-height: 40pt;
+  font-size: 12pt;
+  line-height: 1.8em;
   margin: 0 0 0px 0;
+}
+
+}
+
+.editable ul li, #thearea ol li {
+  font-size: 12pt;
+  margin: 0 0 0 0;
 }
 
 .editable {
   width: 100%;
-  height: 200px;
+  height: 500px;
   border: 0;
   outline: none;
+}
+
+.wysihtml5-editor {
+  outline: none;
+}
+
+#thearea {
+  margin-bottom: 1.5em;
 }

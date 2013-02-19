@@ -32,6 +32,17 @@ angular.module('app.controllers', ['ui','ngSanitize'])
       return 'active'
     else
       return ''
+
+  $scope.converter = new Showdown.converter()
+
+  $scope.md2html = (md) ->
+    $scope.converter.makeHtml(md)
+
+  $scope.html2md = (html) ->
+    html_ = html.split("\n").map($.trim).filter( (line) ->
+      line != ""
+    ).join "\n"
+    toMarkdown html_
 ])
 
 .value('ui.config',
@@ -39,8 +50,8 @@ angular.module('app.controllers', ['ui','ngSanitize'])
     wysihtml5:
       useLineBreaks: false
       autoLink: true
-      html: true
       parserRules: wysihtml5ParserRules
+      stylesheets: ['/css/app.css']
 )
 
 .directive('editable', () ->
@@ -53,11 +64,34 @@ angular.module('app.controllers', ['ui','ngSanitize'])
         ed.composer.commands.exec 'insertHTML', scope.content
     ed.on 'change', () ->
       scope.pouchdb.get scope.pageId, (err, doc) ->
-        console.log doc
         doc.content = $('#'+id).val()
         scope.pouchdb.put doc, (err, res) ->
           console.log res
 )
+
+.controller('EditCtrl', [
+  '$scope'
+  '$routeParams'
+
+($scope, $routeParams) ->
+
+  $scope.pageId = $routeParams.id
+  console.log $scope.pageId
+
+  Pouch 'idb://pages', (err,db) ->
+    $scope.pouchdb = db
+    db.get $scope.pageId, (err, doc) ->
+      if err
+        db.put {_id:$scope.pageId, content:''}
+        $scope.content = ''
+      else
+        console.log doc
+        $scope.$apply () ->
+          $scope.content = doc.content
+          console.log $scope.content
+          console.log doc.content
+
+])
 
 .controller('PageCtrl', [
   '$scope'
@@ -73,10 +107,12 @@ angular.module('app.controllers', ['ui','ngSanitize'])
     db.get $scope.pageId, (err, doc) ->
       if err
         db.put {_id:$scope.pageId, content:''}
+        $scope.content = ''
       else
         console.log doc
         $scope.$apply () ->
           $scope.content = doc.content
+          console.log $scope.content
+          console.log doc.content
 
 ])
-

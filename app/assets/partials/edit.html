@@ -1,6 +1,6 @@
 
 <div ng-app="ng-app">
-  <div ng-controller="PageCtrl">
+  <div ng-controller="EditCtrl">
     <div id="main" class="row-fluid"></div>
     <div class="row-fluid">
       <div class="span2">
@@ -11,10 +11,12 @@
           <li><a href="#">Categories</a></li>
           <li><a href="#">Upload a file</a></li>
           <li class="nav-header">Page</li>
-          <li><a ng-href="#/e/{{pageId}}">Edit the page</a></li>
+          <li><a ng-href="#/p/{{pageId}}">View the page</a></li>
         </ul>
       </div>
-      <div id="thearea" ng-bind-html-unsafe="content" class="span9 clearfix"></div>
+      <div id="thearea" class="span9 clearfix">
+        <textarea ng-model="content" ui-jq="wysihtml5" editable="editable" id="editor" class="editable"></textarea>
+      </div>
     </div>
   </div>
 </div>
