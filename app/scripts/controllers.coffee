@@ -45,25 +45,20 @@ angular.module('app.controllers', ['ui','ngSanitize'])
     toMarkdown html_
 ])
 
-.value('ui.config',
-  jq:
-    wysihtml5:
-      useLineBreaks: false
-      autoLink: true
-      parserRules: wysihtml5ParserRules
-      stylesheets: ['/css/app.css']
-)
-
 .directive('editable', () ->
   (scope, element, attrs) ->
     id = attrs.id
-    ed = $('#'+id).data("wysihtml5").editor
+    ed = $('#'+id).wysihtml5(
+      useLineBreaks: false
+      autoLink: true
+      parserRules: wysihtml5ParserRules
+      stylesheets: ['./css/app.css']
+    ).data('wysihtml5').editor
+
     ed.on 'load', () ->
       scope.$watch 'content', () ->
-        ed.focus()
-        ed.composer.commands.exec 'insertHTML', scope.content
-    ed.on 'change', () ->
-      scope.save id
+        console.log scope.content
+        ed.setValue scope.content, true
 )
 
 .controller('EditCtrl', [
@@ -86,7 +81,6 @@ angular.module('app.controllers', ['ui','ngSanitize'])
         $scope.$apply () ->
           $scope.content = doc.content
           console.log $scope.content
-          console.log doc.content
 
   $scope.save = (id) ->
     content = $('#'+id).val()
@@ -113,12 +107,9 @@ angular.module('app.controllers', ['ui','ngSanitize'])
         db.put {_id:$scope.pageId, content:''}
         $scope.content = ''
       else
-        console.log doc
         $scope.$apply () ->
           $scope.content = doc.content
-          console.log $scope.content
           console.log doc.content
-
 ])
 
 .controller('AllCtrl', [
