@@ -72,7 +72,8 @@ angular.module('app.controllers', ['ui','ngSanitize'])
   $scope.pageId = $routeParams.id
   console.log $scope.pageId
 
-  Pouch 'idb://pages', (err,db) ->
+  Pouch 'http://dev.niltag.net:9292/dev.niltag.net:5984/pages', (err,db) ->
+#  Pouch 'idb://pages', (err,db) ->
     $scope.pouchdb = db
     db.get $scope.pageId, (err, doc) ->
       if err
@@ -108,7 +109,8 @@ angular.module('app.controllers', ['ui','ngSanitize'])
   $scope.pageId = $routeParams.id
   console.log $scope.pageId
 
-  Pouch 'idb://pages', (err,db) ->
+  Pouch 'http://dev.niltag.net:9292/dev.niltag.net:5984/pages', (err,db) ->
+#  Pouch 'idb://pages', (err,db) ->
     $scope.pouchdb = db
     db.get $scope.pageId, (err, doc) ->
       if err
