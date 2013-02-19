@@ -54,7 +54,7 @@ angular.module('app.controllers', ['ui','ngSanitize'])
       useLineBreaks: false
       autoLink: true
       parserRules: wysihtml5ParserRules
-      stylesheets: ['./css/app.css']
+      stylesheets: ['./inner.css']
     ).data('wysihtml5').editor
 
     ed.on 'load', () ->
