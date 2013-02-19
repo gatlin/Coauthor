@@ -1,0 +1,30 @@
+h1 {
+  font-size: 28pt;
+  font-weight: normal;
+  line-height: 40px;
+}
+
+h2 {
+  font-size: 21pt;
+  font-weight: normal;
+  line-height: 40px;
+}
+
+h3 {
+  font-size: 18pt;
+  font-weight: normal;
+  line-height: 40px;
+}
+
+h1, h2, h3, h4, h5 {
+  margin-bottom: 0.7em;
+  margin-top: 0.2em;
+  border-bottom: 1px solid #cdcdcd;
+}
+
+p {
+  font-size: 12pt;
+  line-height: 1.8em;
+  margin: 0 0 0px 0;
+}
+
