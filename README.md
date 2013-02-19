@@ -9,4 +9,4 @@ Coauthor
 Coauthor is a collaborative wiki. You don't use a strange syntax, you just type
 on the page.
 
-It's pretty crazy.
+[And here is a demo!](http://coauthor.niltag.net)
