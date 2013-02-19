@@ -43,6 +43,8 @@ angular.module('app.controllers', ['ui','ngSanitize'])
       line != ""
     ).join "\n"
     toMarkdown html_
+
+  $.pnotify.defaults.history = false
 ])
 
 .directive('editable', () ->
@@ -88,6 +90,12 @@ angular.module('app.controllers', ['ui','ngSanitize'])
       doc.content = content
       $scope.pouchdb.put doc, (err, res) ->
         console.log res
+        unless err
+          $.pnotify
+            text: "Saved!"
+            styling: 'bootstrap'
+            delay: 5000
+            hide: true
 
 ])
 
